@@ -102,8 +102,17 @@ class PUBGConfigParser {
                 }
             }
         }
+        // handle leftover values
         if (buffer && currentKey) {
-            this._contents[currentKey] = buffer
+            if (currentKey in this._contents) {
+                // handle repeated-key array items (e.g. 'PreloadingMaps' values)
+                if (!Array.isArray(this._contents[currentKey])) {
+                    this._contents[currentKey] = [this._contents[currentKey]]
+                }
+                this._contents[currentKey].push(buffer)
+            } else {
+                this._contents[currentKey] = buffer
+            }
         }
     }
 
