@@ -1,3 +1,4 @@
+// print the keys which are configured to toggle the inventory
 loadSimpleIO().then(loadConfig).then(config => {
     let openInventory = config['CustomInputSettins']['ActionKeyList']
                             .find(action => action['ActionName'] === 'ToggleInventory')
@@ -6,6 +7,9 @@ loadSimpleIO().then(loadConfig).then(config => {
     console.log(config)
 })
 
+/**
+ * Load the simple IO plugin and wait until it has loaded.
+ */
 async function loadSimpleIO() {
     let io = null
     overwolf.extensions.current.getExtraObject('simple-io-plugin', res => {

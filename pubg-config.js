@@ -1,3 +1,8 @@
+/**
+ * Load the PUBG config file and return the configuration settings in an object wrapped in a promise.
+ * 
+ * @param ioPlugin The simple-io-plugin (or simple-io-plugin fork) instance. 
+ */
 async function loadConfig(ioPlugin) {
     let config = null
     let loc = ioPlugin.LOCALAPPDATA + '/TslGame/Saved/Config/WindowsNoEditor/GameUserSettings.ini'
@@ -39,7 +44,7 @@ class PUBGConfigParser {
     parseLine(line) {
         line = line.trim()
         if (line === '' || line.startsWith(';') || line.startsWith('[')) {
-            return
+            return // ignore INI sections and comments
         }
         let objects = [this._contents]
         let currentKey = null
