@@ -60,7 +60,7 @@ class PUBGConfigParser {
                             objects[objects.length - 1][currentKey] = buffer
                         } else {
                             if (buffer) {
-                                [].push.call(objects[objects.length - 1], buffer)
+                                this._makeArrayAndPush(objects[objects.length - 1], buffer)
                             }
                         }
                         buffer = ''
@@ -77,14 +77,14 @@ class PUBGConfigParser {
                             object[currentKey] = buffer
                         } else {
                             if (buffer) {
-                                [].push.call(object, buffer)
+                                this._makeArrayAndPush(object, buffer)
                             }
                         }
                         // add current object to parent object
                         if (object['=key']) {
                             objects[objects.length - 1][object['=key']] = object
                         } else {
-                            [].push.call(objects[objects.length - 1], object)
+                            this._makeArrayAndPush(objects[objects.length - 1], object)
                         }
                         delete object['=key']
                         buffer = ''
@@ -105,5 +105,12 @@ class PUBGConfigParser {
     parseLines(data) {
         let lines = data.split(/[\r\n]+/)
         lines.forEach(line => this.parseLine(line))
+    }
+
+    _makeArrayAndPush(object, value) {
+        if (Object.getPrototypeOf(object) !== Array.prototype) {
+            Object.setPrototypeOf(object, Array.prototype)
+        }
+        object.push(value)
     }
 }
