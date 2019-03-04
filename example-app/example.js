@@ -1,4 +1,10 @@
-loadSimpleIO().then(loadConfig).then(console.log)
+loadSimpleIO().then(loadConfig).then(config => {
+    let openInventory = config['CustomInputSettins']['ActionKeyList']
+                            .find(action => action['ActionName'] === 'ToggleInventory')
+    console.log(openInventory['Keys'])
+    console.log('All configuration options:')
+    console.log(config)
+})
 
 async function loadSimpleIO() {
     let io = null
