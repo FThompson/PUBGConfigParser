@@ -1,0 +1,32 @@
+{
+    "manifest_version": "1",
+    "type": "WebApp",
+    "meta": {
+        "name": "PUBG Config Module Test",
+        "version": "0.0.1",
+        "minimum-overwolf-version": "0.90.0",
+        "author": "FThompson",
+        "icon": "example-app/icon.png",
+        "icon_gray": "example-app/icon_gray.png",
+        "description": "Test cases for PUBG Config module. See project repository: <GitHub link>"
+    },
+    "permissions": ["Extensions"],
+    "data": {
+        "extra-objects": {
+            "simple-io-plugin": {
+                "file": "simple-io-plugin.dll",
+                "class": "overwolf.plugins.SimpleIOPlugin"
+            }
+        },
+        "start_window": "index",
+        "windows": {
+            "index": {
+                "file": "example-app/index.html",
+                "transparent": true,
+                "clickthrough": true,
+                "show_in_taskbar": false
+            }
+        }
+    }
+}
+  
